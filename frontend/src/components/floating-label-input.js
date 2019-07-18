@@ -16,8 +16,15 @@ export default class FloatingLabelInput extends Component {
 		this._animatedIsFocused = new Animated.Value(this.props.value === '' ? 0 : 1);
 	}
 
-	handleFocus = () => this.changeFocus(true);
-	handleBlur = () => this.changeFocus(false);
+	handleFocus() {
+		this.changeFocus(true);
+	}
+	handleBlur() { 
+		this.changeFocus(false);
+	}
+	handleChangeText(text) {
+		this.setState({ invalid: this.props.onChange(text) });
+	}
 
 	changeFocus(isFocused) {
 		this.setState({ isFocused: isFocused }, () => {
@@ -35,6 +42,7 @@ export default class FloatingLabelInput extends Component {
 		const labelStyle = Object.assign({}, styles.sheets.label, {
 			position: 'absolute',
 			left: 0,
+			color: (this.state.invalid && !this.state.isFocused) ? styles.colors.alert : styles.colors.basicLight, 
 			top: this._animatedIsFocused.interpolate({
 				inputRange: [0, 1],
 				outputRange: [paddingTop, 0],
@@ -42,11 +50,7 @@ export default class FloatingLabelInput extends Component {
 			fontSize: this._animatedIsFocused.interpolate({
 				inputRange: [0, 1],
 				outputRange: [fontSize, 14],
-			}),
-			color: this._animatedIsFocused.interpolate({
-				inputRange: [0, 1],
-				outputRange: [styles.colors.basicLight, styles.colors.basicLight],
-			}),
+			})
 		});
 		const textStyle = Object.assign({}, styles.sheets.label, { 
 			height: 32, 
@@ -63,8 +67,11 @@ export default class FloatingLabelInput extends Component {
 				<TextInput
 					{...props}
 					style={textStyle}
-					onFocus={this.handleFocus}
-					onBlur={this.handleBlur}
+					onFocus={this.handleFocus.bind(this)}
+					onBlur={this.handleBlur.bind(this)}
+					onChangeText={this.handleChangeText.bind(this)} 
+					autoCapitalize="none"
+                    autoCorrect={false}
 					blurOnSubmit
 				/>
 			</View>

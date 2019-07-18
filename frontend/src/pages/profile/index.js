@@ -6,6 +6,7 @@ import { Header } from '../../components/header';
 import FloatingLabelInput from '../../components/floating-label-input';
 import PhotoPicker from '../../components/photo-picker';
 import styles from '../../common-styles';
+import utils from '../../utils';
 
 const initialState = { 
 	isSaving: false,
@@ -32,9 +33,11 @@ class ProfilePage extends React.Component {
 	}
 	onPhoneChange(val) {
 		this.setState({ phone: val });
+		return !utils.isPhoneValid(val);
 	}
 	onEmailChange(val) {
 		this.setState({ email: val });
+		return !utils.isEmailValid(val);
 	}
 	onTelegramChange(val) {
 		this.setState({ telegram: val });
@@ -46,8 +49,8 @@ class ProfilePage extends React.Component {
 	isReady() {
 		return !!(this.state.firstName &&
 			this.state.lastName &&
-			this.state.phone &&
-			this.state.email &&
+			utils.isPhoneValid(this.state.phone) &&
+			utils.isEmailValid(this.state.email) &&
 			this.state.telegram &&
 			this.state.image);
 	}
@@ -64,11 +67,11 @@ class ProfilePage extends React.Component {
 				<Text style={styles.sheets.title}>Edit Profile</Text>
 				<Content>
 				    <PhotoPicker onImageChanged={this.onImageChanged.bind(this)} />
-					<FloatingLabelInput label="First Name" onChangeText={this.onFirstNameChange.bind(this)} value={this.state.firstName} />
-					<FloatingLabelInput label="Last Name" onChangeText={this.onLastNameChange.bind(this)} value={this.state.lastName} />
-					<FloatingLabelInput label="Phone" onChangeText={this.onPhoneChange.bind(this)} value={this.state.phone} keyboardType='phone-pad' />
-					<FloatingLabelInput label="Email" onChangeText={this.onEmailChange.bind(this)} value={this.state.email} keyboardType='email-address' />
-					<FloatingLabelInput label="Telegram" onChangeText={this.onTelegramChange.bind(this)} value={this.state.telegram} />
+					<FloatingLabelInput label="First Name" onChange={this.onFirstNameChange.bind(this)} value={this.state.firstName} />
+					<FloatingLabelInput label="Last Name" onChange={this.onLastNameChange.bind(this)} value={this.state.lastName} />
+					<FloatingLabelInput label="Phone" onChange={this.onPhoneChange.bind(this)} value={this.state.phone} keyboardType='phone-pad' />
+					<FloatingLabelInput label="Email" onChange={this.onEmailChange.bind(this)} value={this.state.email} keyboardType='email-address' />
+					<FloatingLabelInput label="Telegram" onChange={this.onTelegramChange.bind(this)} value={this.state.telegram} />
 		
 					<PrimaryButton title="Save" onPress={this.onSave.bind(this)}
 						disabled={!!this.state.isSaving || !this.isReady()}
