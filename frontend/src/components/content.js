@@ -9,10 +9,11 @@ export class Content extends React.Component {
 	render() {
 		return (
 			<KeyboardAvoidingView behavior="padding" enabled>
-				<ScrollView 
+				<ScrollView
 					style={Object.assign({ height: '100%' }, this.props.style)}
-					keyboardShouldPersistTaps={"handled"}
-					alwaysBounceVertical={true}>
+					keyboardShouldPersistTaps={'handled'}
+					alwaysBounceVertical={true}
+				>
 					{this.props.children}
 				</ScrollView>
 			</KeyboardAvoidingView>

@@ -5,7 +5,7 @@ import styles from '../common-styles';
 // Based on article from https://goshakkk.name/floating-label-input-rn-animated/
 
 const initialState = {
-	isFocused: false,
+	isFocused: false
 };
 
 export default class FloatingLabelInput extends Component {
@@ -19,7 +19,7 @@ export default class FloatingLabelInput extends Component {
 	handleFocus() {
 		this.changeFocus(true);
 	}
-	handleBlur() { 
+	handleBlur() {
 		this.changeFocus(false);
 	}
 	handleChangeText(text) {
@@ -29,8 +29,8 @@ export default class FloatingLabelInput extends Component {
 	changeFocus(isFocused) {
 		this.setState({ isFocused: isFocused }, () => {
 			Animated.timing(this._animatedIsFocused, {
-				toValue: (isFocused || this.props.value !== '') ? 1 : 0,
-				duration: 200,
+				toValue: isFocused || this.props.value !== '' ? 1 : 0,
+				duration: 200
 			}).start();
 		});
 	}
@@ -42,36 +42,39 @@ export default class FloatingLabelInput extends Component {
 		const labelStyle = Object.assign({}, styles.sheets.label, {
 			position: 'absolute',
 			left: 0,
-			color: (this.state.invalid && !this.state.isFocused) ? styles.colors.alert : styles.colors.basicLight, 
+			color:
+				this.state.invalid && !this.state.isFocused
+					? styles.colors.alert
+					: styles.colors.basicLight,
 			top: this._animatedIsFocused.interpolate({
 				inputRange: [0, 1],
-				outputRange: [paddingTop, 0],
+				outputRange: [paddingTop, 0]
 			}),
 			fontSize: this._animatedIsFocused.interpolate({
 				inputRange: [0, 1],
-				outputRange: [fontSize, 14],
+				outputRange: [fontSize, 14]
 			})
 		});
-		const textStyle = Object.assign({}, styles.sheets.label, { 
-			height: 32, 
-			fontSize: fontSize, 
-			color: styles.colors.basic, 
-			borderBottomWidth: 1, 
-			borderBottomColor: this.state.isFocused ? styles.colors.primary : styles.colors.separator 
+		const textStyle = Object.assign({}, styles.sheets.label, {
+			height: 32,
+			fontSize: fontSize,
+			color: styles.colors.basic,
+			borderBottomWidth: 1,
+			borderBottomColor: this.state.isFocused
+				? styles.colors.primary
+				: styles.colors.separator
 		});
 		return (
 			<View style={{ paddingTop: paddingTop, marginBottom: 25 }}>
-				<Animated.Text style={labelStyle}>
-					{label}
-				</Animated.Text>
+				<Animated.Text style={labelStyle}>{label}</Animated.Text>
 				<TextInput
 					{...props}
 					style={textStyle}
 					onFocus={this.handleFocus.bind(this)}
 					onBlur={this.handleBlur.bind(this)}
-					onChangeText={this.handleChangeText.bind(this)} 
+					onChangeText={this.handleChangeText.bind(this)}
 					autoCapitalize="none"
-                    autoCorrect={false}
+					autoCorrect={false}
 					blurOnSubmit
 				/>
 			</View>

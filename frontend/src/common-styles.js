@@ -4,7 +4,7 @@ const fontFamilies = {
 	normal: 'pt-root-ui-regular',
 	medium: 'pt-root-ui-medium',
 	bold: 'pt-root-ui-bold'
-}
+};
 
 const colors = {
 	basic: '#000',
@@ -23,7 +23,7 @@ const colors = {
 const common = {
 	padding: 16,
 	buttonHeight: 48
-}
+};
 
 const sheets = StyleSheet.create({
 	title: {
@@ -54,10 +54,10 @@ const sheets = StyleSheet.create({
 		alignItems: 'center'
 	},
 	photo: {
-		width: 64, 
+		width: 64,
 		height: 64,
 		borderRadius: 32,
-		borderWidth: 2, 
+		borderWidth: 2,
 		borderColor: colors.primary
 	},
 	header: {
@@ -77,8 +77,8 @@ const sheets = StyleSheet.create({
 });
 
 export default {
-	common: common,
-	fontFamilies: fontFamilies,
-	sheets: sheets,
-	colors: colors
+	common,
+	fontFamilies,
+	sheets,
+	colors
 };

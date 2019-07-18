@@ -1,8 +1,17 @@
 {
-    "eslint.alwaysShowStatus": true,
-    "prettier.eslintIntegration": true,
-    "prettier.singleQuote": true,
-    "editor.tabSize": 4,
-    "editor.insertSpaces": false,
-    "editor.detectIndentation": false
+  //"eslint.nodePath": "/usr/local/lib/node_modules/",
+  "eslint.nodePath": "~/.config/yarn/global/node_modules",
+  "prettier.eslintIntegration": true,
+  "prettier.singleQuote": true,
+  "editor.tabSize": 4,
+  "editor.insertSpaces": false,
+  "editor.detectIndentation": false,
+  // let editor format using prettier for all other files
+  "editor.formatOnSave": true,
+  // disable editor formatting, so eslint can handle it
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "eslint.autoFixOnSave": true,
+  "eslint.alwaysShowStatus": true
 }

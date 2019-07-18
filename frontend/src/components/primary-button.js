@@ -8,8 +8,9 @@ const { width } = Dimensions.get('window');
 export class PrimaryButton extends React.Component {
 	render() {
 		return (
-			<Button Component={TouchableHighlight} 
-			    title={this.props.title}
+			<Button
+				Component={TouchableHighlight}
+				title={this.props.title}
 				onPress={this.props.onPress}
 				disabled={this.props.disabled}
 				loading={this.props.loading}
@@ -27,14 +28,17 @@ export class PrimaryButton extends React.Component {
 				disabledTitleStyle={{
 					color: styles.colors.button.foreground
 				}}
-				containerStyle={Object.assign({ 
-					justifyContent: 'center', 
-					alignItems: 'center', 
-					width: '100%' 
-				}, this.props.style)}
+				containerStyle={Object.assign(
+					{
+						justifyContent: 'center',
+						alignItems: 'center',
+						width: '100%'
+					},
+					this.props.style
+				)}
 				buttonStyle={{
 					backgroundColor: this.props.background || styles.colors.primary,
-					width: width - 2*styles.common.padding,
+					width: width - 2 * styles.common.padding,
 					height: styles.common.buttonHeight,
 					borderRadius: 4,
 					borderWidth: 0
@@ -44,4 +48,3 @@ export class PrimaryButton extends React.Component {
 		);
 	}
 }
-

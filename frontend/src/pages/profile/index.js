@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, KeyboardAvoidingView } from 'react-native';
+import { View, Text } from 'react-native';
 import { Content } from '../../components/content';
 import { PrimaryButton } from '../../components/primary-button';
 import { Header } from '../../components/header';
@@ -8,11 +8,11 @@ import PhotoPicker from '../../components/photo-picker';
 import styles from '../../common-styles';
 import utils from '../../utils';
 
-const initialState = { 
+const initialState = {
 	isSaving: false,
-	firstName: '', 
+	firstName: '',
 	lastName: '',
-	phone: '', 
+	phone: '',
 	email: '',
 	telegram: '',
 	image: null
@@ -47,12 +47,14 @@ class ProfilePage extends React.Component {
 	}
 
 	isReady() {
-		return !!(this.state.firstName &&
+		return !!(
+			this.state.firstName &&
 			this.state.lastName &&
 			utils.isPhoneValid(this.state.phone) &&
 			utils.isEmailValid(this.state.email) &&
 			this.state.telegram &&
-			this.state.image);
+			this.state.image
+		);
 	}
 
 	onSave() {
@@ -66,22 +68,46 @@ class ProfilePage extends React.Component {
 				<Header {...this.props} backIconColor={styles.colors.basic} />
 				<Text style={styles.sheets.title}>Edit Profile</Text>
 				<Content>
-				    <PhotoPicker onImageChanged={this.onImageChanged.bind(this)} />
-					<FloatingLabelInput label="First Name" onChange={this.onFirstNameChange.bind(this)} value={this.state.firstName} />
-					<FloatingLabelInput label="Last Name" onChange={this.onLastNameChange.bind(this)} value={this.state.lastName} />
-					<FloatingLabelInput label="Phone" onChange={this.onPhoneChange.bind(this)} value={this.state.phone} keyboardType='phone-pad' />
-					<FloatingLabelInput label="Email" onChange={this.onEmailChange.bind(this)} value={this.state.email} keyboardType='email-address' />
-					<FloatingLabelInput label="Telegram" onChange={this.onTelegramChange.bind(this)} value={this.state.telegram} />
-		
-					<PrimaryButton title="Save" onPress={this.onSave.bind(this)}
+					<PhotoPicker onImageChanged={this.onImageChanged.bind(this)} />
+					<FloatingLabelInput
+						label="First Name"
+						onChange={this.onFirstNameChange.bind(this)}
+						value={this.state.firstName}
+					/>
+					<FloatingLabelInput
+						label="Last Name"
+						onChange={this.onLastNameChange.bind(this)}
+						value={this.state.lastName}
+					/>
+					<FloatingLabelInput
+						label="Phone"
+						onChange={this.onPhoneChange.bind(this)}
+						value={this.state.phone}
+						keyboardType="phone-pad"
+					/>
+					<FloatingLabelInput
+						label="Email"
+						onChange={this.onEmailChange.bind(this)}
+						value={this.state.email}
+						keyboardType="email-address"
+					/>
+					<FloatingLabelInput
+						label="Telegram"
+						onChange={this.onTelegramChange.bind(this)}
+						value={this.state.telegram}
+					/>
+
+					<PrimaryButton
+						title="Save"
+						onPress={this.onSave.bind(this)}
 						disabled={!!this.state.isSaving || !this.isReady()}
 						loading={!!this.state.isSaving}
-						style={{ marginTop: 40, marginBottom: styles.common.padding }}>
-					</PrimaryButton>
+						style={{ marginTop: 40, marginBottom: styles.common.padding }}
+					></PrimaryButton>
 				</Content>
 			</View>
 		);
 	}
-};
+}
 
 export default ProfilePage;
