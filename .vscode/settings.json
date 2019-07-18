@@ -1,0 +1,8 @@
+{
+    "eslint.alwaysShowStatus": true,
+    "prettier.eslintIntegration": true,
+    "prettier.singleQuote": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.detectIndentation": false
+}
