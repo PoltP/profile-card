@@ -60,9 +60,8 @@ class ProfilePage extends React.Component {
 	}
 
 	onSave() {
-		console.log('"Save" button has been pressed');
-		//this.setState({ isSaving: true }); // call it before POST to server, then set to 'false'
-		//setTimeout(() => this.setState({ isSaving: false }), 2000);
+		this.setState({ isSaving: true }); // call it before POST to server, then set to 'false'
+		setTimeout(() => this.setState({ isSaving: false }), 2000);
 	}
 
 	render() {

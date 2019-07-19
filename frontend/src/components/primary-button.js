@@ -1,50 +1,42 @@
-import styles from '../common-styles';
 import React from 'react';
-import { Dimensions, TouchableHighlight } from 'react-native';
-import { Button } from 'react-native-elements';
-
-const { width } = Dimensions.get('window');
+import { TouchableHighlight, Text, ActivityIndicator } from 'react-native';
+import styles from '../common-styles';
 
 export class PrimaryButton extends React.Component {
+	constructor(props) {
+		super(props);
+	}
 	render() {
 		return (
-			<Button
-				Component={TouchableHighlight}
-				title={this.props.title}
+			<TouchableHighlight
 				onPress={this.props.onPress}
+				activeOpacity={1}
 				disabled={this.props.disabled}
-				loading={this.props.loading}
-				titleStyle={{
-					color: this.props.color || 'white',
-					fontSize: 16,
-					textAlign: 'center',
-					lineHeight: 16,
-					textTransform: 'none',
-					fontFamily: styles.fontFamilies.normal
-				}}
-				disabledStyle={{
-					backgroundColor: styles.colors.button.disabled
-				}}
-				disabledTitleStyle={{
-					color: styles.colors.button.foreground
-				}}
-				containerStyle={Object.assign(
-					{
-						justifyContent: 'center',
-						alignItems: 'center',
-						width: '100%'
-					},
-					this.props.style
-				)}
-				buttonStyle={{
-					backgroundColor: this.props.background || styles.colors.primary,
-					width: width - 2 * styles.common.padding,
-					height: styles.common.buttonHeight,
-					borderRadius: 4,
-					borderWidth: 0
-				}}
 				underlayColor={styles.colors.button.pressed}
-			/>
+				style={[
+					buttonStyles.container(this.props.disabled && !this.props.loading),
+					this.props.style
+				]}
+			>
+				{this.props.loading ? (
+					<ActivityIndicator size="small" color={styles.colors.button.foreground} />
+				) : (
+					<Text style={buttonStyles.title}>{this.props.title}</Text>
+				)}
+			</TouchableHighlight>
 		);
 	}
 }
+
+const buttonStyles = {
+	container: isDisabled =>
+		Object.assign({}, styles.sheets.containerCentered, {
+			backgroundColor: isDisabled ? styles.colors.button.disabled : styles.colors.primary,
+			height: styles.common.buttonHeight,
+			borderRadius: 4,
+			borderWidth: 0
+		}),
+	title: Object.assign({}, styles.sheets.action, {
+		color: styles.colors.button.foreground
+	})
+};
