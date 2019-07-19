@@ -35,11 +35,11 @@ class ProfilePage extends React.Component {
 	}
 	onPhoneChange(val) {
 		this.setState({ phone: val });
-		return !utils.isPhoneValid(val);
+		return !(val === initialState.phone || utils.isPhoneValid(val));
 	}
 	onEmailChange(val) {
 		this.setState({ email: val });
-		return !utils.isEmailValid(val);
+		return !(val === initialState.email || utils.isEmailValid(val));
 	}
 	onTelegramChange(val) {
 		this.setState({ telegram: val });
