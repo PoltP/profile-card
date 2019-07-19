@@ -1,4 +1,5 @@
 {
+  //"parser": "babel-eslint",
   "extends": ["airbnb", "prettier", "prettier/react"],
   "rules": {
     "react/jsx-filename-extension": [
@@ -12,7 +13,7 @@
       {
         "trailingComma": "none",
         "singleQuote": true,
-        "printWidth": 100,
+        "printWidth": 120,
         "tabWidth": 4,
         "useTabs": true
       }

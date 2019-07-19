@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Dimensions } from 'react-native';
 import { Content } from '../../components/content';
 import { PrimaryButton } from '../../components/primary-button';
 import { Header } from '../../components/header';
@@ -7,6 +7,8 @@ import FloatingLabelInput from '../../components/floating-label-input';
 import PhotoPicker from '../../components/photo-picker';
 import styles from '../../common-styles';
 import utils from '../../utils';
+
+const { height } = Dimensions.get('window');
 
 const initialState = {
 	isSaving: false,
@@ -59,15 +61,20 @@ class ProfilePage extends React.Component {
 
 	onSave() {
 		console.log('"Save" button has been pressed');
-		//this.setState({ isSaving: true });// call it before POST to server, then set to 'false'
+		//this.setState({ isSaving: true }); // call it before POST to server, then set to 'false'
+		//setTimeout(() => this.setState({ isSaving: false }), 2000);
 	}
 
 	render() {
 		return (
-			<View keyboardShouldPersistTaps={'always'} style={{ padding: styles.common.padding }}>
+			<View keyboardShouldPersistTaps={'always'} style={{ paddingHorizontal: styles.common.padding }}>
 				<Header {...this.props} backIconColor={styles.colors.basic} />
 				<Text style={styles.sheets.title}>Edit Profile</Text>
-				<Content>
+				<Content
+					style={{
+						height: height - (styles.sheets.header.height + styles.sheets.header.paddingTop + 50)
+					}}
+				>
 					<PhotoPicker onImageChanged={this.onImageChanged.bind(this)} />
 					<FloatingLabelInput
 						label="First Name"
