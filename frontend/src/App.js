@@ -18,7 +18,7 @@ export default class App extends React.Component {
 	}
 
 	componentDidMount = async () => {
-		await Font.loadAsync({
+		Font.loadAsync({
 			// https://docs.expo.io/versions/latest/guides/using-custom-fonts/
 			'pt-root-ui-regular': require('../assets/fonts/PTRootUI_Regular.otf'),
 			'pt-root-ui-medium': require('../assets/fonts/PTRootUI_Medium.otf'),
