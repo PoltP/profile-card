@@ -77,28 +77,33 @@ class ProfilePage extends React.Component {
 					<PhotoPicker onImageChanged={this.onImageChanged.bind(this)} />
 					<FloatingLabelInput
 						label="First Name"
+						autoCapitalize={'words'}
 						onChange={this.onFirstNameChange.bind(this)}
 						value={this.state.firstName}
 					/>
 					<FloatingLabelInput
 						label="Last Name"
+						autoCapitalize={'words'}
 						onChange={this.onLastNameChange.bind(this)}
 						value={this.state.lastName}
 					/>
 					<FloatingLabelInput
 						label="Phone"
+						autoCapitalize={'none'}
 						onChange={this.onPhoneChange.bind(this)}
 						value={this.state.phone}
 						keyboardType="phone-pad"
 					/>
 					<FloatingLabelInput
 						label="Email"
+						autoCapitalize={'none'}
 						onChange={this.onEmailChange.bind(this)}
 						value={this.state.email}
 						keyboardType="email-address"
 					/>
 					<FloatingLabelInput
 						label="Telegram"
+						autoCapitalize={'none'}
 						onChange={this.onTelegramChange.bind(this)}
 						value={this.state.telegram}
 					/>

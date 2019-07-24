@@ -69,7 +69,6 @@ export default class FloatingLabelInput extends Component {
 					onFocus={this.handleFocus.bind(this)}
 					onBlur={this.handleBlur.bind(this)}
 					onChangeText={this.handleChangeText.bind(this)}
-					autoCapitalize={'words'}
 					autoCorrect={false}
 					returnKeyType={'next'}
 					blurOnSubmit
