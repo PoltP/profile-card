@@ -87,6 +87,7 @@ class ProfilePage extends React.Component {
 						label="First Name"
 						ref={input => this.changeInputInstance(0, input)}
 						autoCapitalize={'words'}
+						returnKeyType={'next'}
 						onChange={this.onFirstNameChange.bind(this)}
 						onSubmitEditing={() => this.changeInputFocus(1)}
 						value={this.state.firstName}
@@ -95,6 +96,7 @@ class ProfilePage extends React.Component {
 						label="Last Name"
 						ref={input => this.changeInputInstance(1, input)}
 						autoCapitalize={'words'}
+						returnKeyType={'next'}
 						onChange={this.onLastNameChange.bind(this)}
 						onSubmitEditing={() => this.changeInputFocus(2)}
 						value={this.state.lastName}
@@ -103,6 +105,7 @@ class ProfilePage extends React.Component {
 						label="Phone"
 						ref={input => this.changeInputInstance(2, input)}
 						autoCapitalize={'none'}
+						returnKeyType={'next'}
 						onChange={this.onPhoneChange.bind(this)}
 						onSubmitEditing={() => this.changeInputFocus(3)}
 						value={this.state.phone}
@@ -112,6 +115,7 @@ class ProfilePage extends React.Component {
 						label="Email"
 						ref={input => this.changeInputInstance(3, input)}
 						autoCapitalize={'none'}
+						returnKeyType={'next'}
 						onChange={this.onEmailChange.bind(this)}
 						onSubmitEditing={() => this.changeInputFocus(4)}
 						value={this.state.email}
@@ -121,6 +125,7 @@ class ProfilePage extends React.Component {
 						label="Telegram"
 						ref={input => this.changeInputInstance(4, input)}
 						autoCapitalize={'none'}
+						returnKeyType={'none'}
 						onChange={this.onTelegramChange.bind(this)}
 						onSubmitEditing={() => this.changeInputFocus(0)}
 						value={this.state.telegram}
