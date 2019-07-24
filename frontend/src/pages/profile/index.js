@@ -25,6 +25,7 @@ class ProfilePage extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this._inputs = [];
 	}
 
 	onFirstNameChange(val) {
@@ -46,6 +47,13 @@ class ProfilePage extends React.Component {
 	}
 	onImageChanged(uri) {
 		this.setState({ image: uri });
+	}
+
+	changeInputInstance(index, instance) {
+		this._inputs[index] = instance;
+	}
+	changeInputFocus(index) {
+		this._inputs[index] && this._inputs[index].focus();
 	}
 
 	isReady() {
@@ -77,34 +85,44 @@ class ProfilePage extends React.Component {
 					<PhotoPicker onImageChanged={this.onImageChanged.bind(this)} />
 					<FloatingLabelInput
 						label="First Name"
+						ref={input => this.changeInputInstance(0, input)}
 						autoCapitalize={'words'}
 						onChange={this.onFirstNameChange.bind(this)}
+						onSubmitEditing={() => this.changeInputFocus(1)}
 						value={this.state.firstName}
 					/>
 					<FloatingLabelInput
 						label="Last Name"
+						ref={input => this.changeInputInstance(1, input)}
 						autoCapitalize={'words'}
 						onChange={this.onLastNameChange.bind(this)}
+						onSubmitEditing={() => this.changeInputFocus(2)}
 						value={this.state.lastName}
 					/>
 					<FloatingLabelInput
 						label="Phone"
+						ref={input => this.changeInputInstance(2, input)}
 						autoCapitalize={'none'}
 						onChange={this.onPhoneChange.bind(this)}
+						onSubmitEditing={() => this.changeInputFocus(3)}
 						value={this.state.phone}
 						keyboardType="phone-pad"
 					/>
 					<FloatingLabelInput
 						label="Email"
+						ref={input => this.changeInputInstance(3, input)}
 						autoCapitalize={'none'}
 						onChange={this.onEmailChange.bind(this)}
+						onSubmitEditing={() => this.changeInputFocus(4)}
 						value={this.state.email}
 						keyboardType="email-address"
 					/>
 					<FloatingLabelInput
 						label="Telegram"
+						ref={input => this.changeInputInstance(4, input)}
 						autoCapitalize={'none'}
 						onChange={this.onTelegramChange.bind(this)}
+						onSubmitEditing={() => this.changeInputFocus(0)}
 						value={this.state.telegram}
 					/>
 

@@ -14,6 +14,7 @@ export default class FloatingLabelInput extends Component {
 
 	constructor(props) {
 		super(props);
+		this._input = null;
 		this._animatedIsFocused = new Animated.Value(this.props.value === '' ? 0 : 1);
 	}
 
@@ -34,6 +35,9 @@ export default class FloatingLabelInput extends Component {
 				duration: 200
 			}).start();
 		});
+	}
+	focus() {
+		this._input && this._input.focus();
 	}
 
 	render() {
@@ -65,6 +69,7 @@ export default class FloatingLabelInput extends Component {
 				<Animated.Text style={labelStyle}>{label}</Animated.Text>
 				<TextInput
 					{...props}
+					ref={input => (this._input = input)}
 					style={textStyle}
 					onFocus={this.handleFocus.bind(this)}
 					onBlur={this.handleBlur.bind(this)}
