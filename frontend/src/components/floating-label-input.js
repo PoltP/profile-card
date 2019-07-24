@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, TextInput, Animated } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from '../common-styles';
 
 // Based on article from https://goshakkk.name/floating-label-input-rn-animated/
@@ -42,10 +43,7 @@ export default class FloatingLabelInput extends Component {
 		const labelStyle = Object.assign({}, styles.sheets.label, {
 			position: 'absolute',
 			left: 0,
-			color:
-				this.state.invalid && !this.state.isFocused
-					? styles.colors.alert
-					: styles.colors.basicLight,
+			color: this.state.invalid && !this.state.isFocused ? styles.colors.alert : styles.colors.basicLight,
 			top: this._animatedIsFocused.interpolate({
 				inputRange: [0, 1],
 				outputRange: [paddingTop, 0]
@@ -60,9 +58,7 @@ export default class FloatingLabelInput extends Component {
 			fontSize: fontSize,
 			color: styles.colors.basic,
 			borderBottomWidth: 1,
-			borderBottomColor: this.state.isFocused
-				? styles.colors.primary
-				: styles.colors.separator
+			borderBottomColor: this.state.isFocused ? styles.colors.primary : styles.colors.separator
 		});
 		return (
 			<View style={{ paddingTop: paddingTop, marginBottom: 25 }}>
@@ -73,11 +69,20 @@ export default class FloatingLabelInput extends Component {
 					onFocus={this.handleFocus.bind(this)}
 					onBlur={this.handleBlur.bind(this)}
 					onChangeText={this.handleChangeText.bind(this)}
-					autoCapitalize="none"
+					autoCapitalize={'words'}
 					autoCorrect={false}
+					returnKeyType={'next'}
 					blurOnSubmit
 				/>
 			</View>
 		);
 	}
 }
+
+FloatingLabelInput.propTypes = {
+	label: PropTypes.string
+};
+
+FloatingLabelInput.defaultProps = {
+	label: ''
+};
