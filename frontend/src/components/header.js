@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native';
 import icons from '../icons/defs';
 import styles from '../common-styles';
 
-const HeaderContainer = styled.SafeAreaView`
+const HeaderContainer = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;

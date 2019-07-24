@@ -30,10 +30,7 @@ const sheets = StyleSheet.create({
 		color: colors.basic,
 		fontFamily: fontFamilies.bold,
 		fontSize: 24,
-		lineHeight: 32,
-		paddingBottom: 32,
-		display: 'flex',
-		alignItems: 'flex-end'
+		height: 64
 	},
 	action: {
 		color: colors.primary,
@@ -61,7 +58,7 @@ const sheets = StyleSheet.create({
 		borderColor: colors.primary
 	},
 	header: {
-		height: 90,
+		height: 84,
 		paddingTop: 20
 	},
 	containerCentered: {

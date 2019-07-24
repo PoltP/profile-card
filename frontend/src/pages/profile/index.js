@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import { SafeAreaView, View, Text, Dimensions } from 'react-native';
 import { Content } from '../../components/content';
 import { PrimaryButton } from '../../components/primary-button';
 import { Header } from '../../components/header';
@@ -74,72 +74,78 @@ class ProfilePage extends React.Component {
 
 	render() {
 		return (
-			<View keyboardShouldPersistTaps={'always'} style={{ paddingHorizontal: styles.common.padding }}>
-				<Header {...this.props} backIconColor={styles.colors.basic} />
-				<Text style={styles.sheets.title}>Edit Profile</Text>
-				<Content
-					style={{
-						height: height - (styles.sheets.header.height + styles.sheets.header.paddingTop + 50)
-					}}
-				>
-					<PhotoPicker onImageChanged={this.onImageChanged.bind(this)} />
-					<FloatingLabelInput
-						label="First Name"
-						ref={input => this.changeInputInstance(0, input)}
-						autoCapitalize={'words'}
-						returnKeyType={'next'}
-						onChange={this.onFirstNameChange.bind(this)}
-						onSubmitEditing={() => this.changeInputFocus(1)}
-						value={this.state.firstName}
-					/>
-					<FloatingLabelInput
-						label="Last Name"
-						ref={input => this.changeInputInstance(1, input)}
-						autoCapitalize={'words'}
-						returnKeyType={'next'}
-						onChange={this.onLastNameChange.bind(this)}
-						onSubmitEditing={() => this.changeInputFocus(2)}
-						value={this.state.lastName}
-					/>
-					<FloatingLabelInput
-						label="Phone"
-						ref={input => this.changeInputInstance(2, input)}
-						autoCapitalize={'none'}
-						returnKeyType={'next'}
-						onChange={this.onPhoneChange.bind(this)}
-						onSubmitEditing={() => this.changeInputFocus(3)}
-						value={this.state.phone}
-						keyboardType="phone-pad"
-					/>
-					<FloatingLabelInput
-						label="Email"
-						ref={input => this.changeInputInstance(3, input)}
-						autoCapitalize={'none'}
-						returnKeyType={'next'}
-						onChange={this.onEmailChange.bind(this)}
-						onSubmitEditing={() => this.changeInputFocus(4)}
-						value={this.state.email}
-						keyboardType="email-address"
-					/>
-					<FloatingLabelInput
-						label="Telegram"
-						ref={input => this.changeInputInstance(4, input)}
-						autoCapitalize={'none'}
-						returnKeyType={'none'}
-						onChange={this.onTelegramChange.bind(this)}
-						onSubmitEditing={() => this.changeInputFocus(0)}
-						value={this.state.telegram}
-					/>
+			<SafeAreaView style={{ flex: 1 }}>
+				<View keyboardShouldPersistTaps={'always'} style={{ paddingHorizontal: styles.common.padding }}>
+					<Header {...this.props} backIconColor={styles.colors.basic} />
+					<Text style={styles.sheets.title}>Edit Profile</Text>
+					<Content
+						style={{
+							height:
+								height -
+								(styles.sheets.header.height +
+									styles.sheets.title.height +
+									styles.sheets.header.paddingTop)
+						}}
+					>
+						<PhotoPicker onImageChanged={this.onImageChanged.bind(this)} />
+						<FloatingLabelInput
+							label="First Name"
+							ref={input => this.changeInputInstance(0, input)}
+							autoCapitalize={'words'}
+							returnKeyType={'next'}
+							onChange={this.onFirstNameChange.bind(this)}
+							onSubmitEditing={() => this.changeInputFocus(1)}
+							value={this.state.firstName}
+						/>
+						<FloatingLabelInput
+							label="Last Name"
+							ref={input => this.changeInputInstance(1, input)}
+							autoCapitalize={'words'}
+							returnKeyType={'next'}
+							onChange={this.onLastNameChange.bind(this)}
+							onSubmitEditing={() => this.changeInputFocus(2)}
+							value={this.state.lastName}
+						/>
+						<FloatingLabelInput
+							label="Phone"
+							ref={input => this.changeInputInstance(2, input)}
+							autoCapitalize={'none'}
+							returnKeyType={'next'}
+							onChange={this.onPhoneChange.bind(this)}
+							onSubmitEditing={() => this.changeInputFocus(3)}
+							value={this.state.phone}
+							keyboardType="phone-pad"
+						/>
+						<FloatingLabelInput
+							label="Email"
+							ref={input => this.changeInputInstance(3, input)}
+							autoCapitalize={'none'}
+							returnKeyType={'next'}
+							onChange={this.onEmailChange.bind(this)}
+							onSubmitEditing={() => this.changeInputFocus(4)}
+							value={this.state.email}
+							keyboardType="email-address"
+						/>
+						<FloatingLabelInput
+							label="Telegram"
+							ref={input => this.changeInputInstance(4, input)}
+							autoCapitalize={'none'}
+							returnKeyType={'none'}
+							onChange={this.onTelegramChange.bind(this)}
+							onSubmitEditing={() => this.changeInputFocus(0)}
+							value={this.state.telegram}
+						/>
 
-					<PrimaryButton
-						title="Save"
-						onPress={this.onSave.bind(this)}
-						disabled={!!this.state.isSaving || !this.isReady()}
-						loading={!!this.state.isSaving}
-						style={{ marginTop: 40, marginBottom: styles.common.padding }}
-					></PrimaryButton>
-				</Content>
-			</View>
+						<PrimaryButton
+							title="Save"
+							onPress={this.onSave.bind(this)}
+							disabled={!!this.state.isSaving || !this.isReady()}
+							loading={!!this.state.isSaving}
+							style={{ marginTop: 40, marginBottom: styles.common.padding }}
+						></PrimaryButton>
+					</Content>
+				</View>
+			</SafeAreaView>
 		);
 	}
 }
